@@ -7,7 +7,7 @@ import java.util.List;
 public interface IFranquiciaDao {
     List<Franquicia> getAll();
     Franquicia getById(Integer Id);
-    Franquicia updateById(Integer id);
+    Franquicia update(Franquicia franquicia);
     Franquicia createOne(Franquicia franquicia);
-    void delete(Integer idFranquicia);
+    Franquicia delete(Integer idFranquicia);
 }

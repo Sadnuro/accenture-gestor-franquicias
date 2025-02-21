@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class FranquiciaDaoImpl implements IFranquiciaDao {
@@ -16,13 +17,14 @@ public class FranquiciaDaoImpl implements IFranquiciaDao {
     public List<Franquicia> getAll() {
         return franquiciaRepository.findAll();
     };
+
     public Franquicia getById(Integer idFranquicia) {
-        return franquiciaRepository.findById(idFranquicia); //.orElse(null);
+        return franquiciaRepository.findById(idFranquicia).orElse(null);
     }
 
     @Override
-    public Franquicia updateById(Integer id) {
-        return null;
+    public Franquicia update(Franquicia franquicia) {
+        return franquiciaRepository.save(franquicia);
     }
 
     @Override
@@ -31,12 +33,12 @@ public class FranquiciaDaoImpl implements IFranquiciaDao {
     }
 
     @Override
-    public void delete(Integer idFranquicia) {
+    public Franquicia delete(Integer idFranquicia) {
 
     }
 
     ;
-    public Object updateOne(Franquicia franquicia) {
+    public Franquicia updateOne(Franquicia franquicia) {
         // Si existe lo actualiza, sino lo crea.
         return franquiciaRepository.save(franquicia);
     };

@@ -1,35 +1,42 @@
 package com.accenture.franquicias.services.impl;
 
+import com.accenture.franquicias.dao.IFranquiciaDao;
 import com.accenture.franquicias.models.entity.Franquicia;
 import com.accenture.franquicias.services.IFranquiciaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FranquiciaServiceImpl implements IFranquiciaService {
+    @Autowired
+    private IFranquiciaDao franquiciaDao;
+
+
     @Override
-    public Franquicia getById(Integer Id) {
-        return null;
+    public Franquicia getById(Integer idFranquicia) {
+        return franquiciaDao.getById(idFranquicia);
     }
 
     @Override
     public List<Franquicia> getAll() {
-        return null;
+        return franquiciaDao.getAll();
     }
 
     @Override
-    public Franquicia updateById(Integer id, Franquicia franquicia) {
-        return null;
+    public Franquicia update(Franquicia franquicia) {
+        return franquiciaDao.update(franquicia);
     }
 
     @Override
     public Franquicia createOne(Franquicia franquicia) {
-        return null;
+        return franquiciaDao.update(franquicia);
     }
 
     @Override
-    public void delete(Integer idFranquicia) {
-
+    public Franquicia delete(Integer idFranquicia) {
+        return franquiciaDao.delete(idFranquicia);
     }
 }

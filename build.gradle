@@ -31,6 +31,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
+	implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+	// https://mvnrepository.com/artifact/org.mapstruct/mapstruct
+	implementation 'org.mapstruct:mapstruct:1.6.3'
+
 
 }
 
