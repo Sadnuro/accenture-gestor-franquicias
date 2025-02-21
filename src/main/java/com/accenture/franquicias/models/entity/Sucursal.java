@@ -18,8 +18,8 @@ public class Sucursal {
     @Column(name = "nombre_sucursal")
     private int nombreSucursal;
 
-    @Column(name = "id_franquicia")
-    private int idFranquicia;
+//    @Column(name = "id_franquicia")
+//    private int idFranquicia;
 
     @Column(name = "fecha_creacion")
     private int fechaCreacion;

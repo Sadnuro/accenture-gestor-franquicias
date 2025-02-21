@@ -16,13 +16,16 @@ import java.util.List;
 public class FranquiciaController {
     @Autowired
     IFranquiciaService franquiciaService;
-    @Autowired
-    FranquiciaMapper franquiciaMapper;
+//    private final FranquiciaMapper franquiciaMapper;
+//
+//    @Autowired
+//    public FranquiciaMapper(FranquiciaMapper franquiciaMapper) {
+//        this.franquiciaMapper = franquiciaMapper;
+//    }
 
-    @GetMapping({"/"})
+    @GetMapping({"/", ""})
     public List<FranquiciaGetDto> getAllFranquicias(){
         List<Franquicia> listaEntity =  franquiciaService.getAll();
-        List<FranquiciaGetDto> franquicias = franquiciaMapper.toGetDTOList(listaEntity);
-        return franquicias;
+        return FranquiciaMapper.INSTANCE.toGetDTOList(listaEntity);
     }
 }

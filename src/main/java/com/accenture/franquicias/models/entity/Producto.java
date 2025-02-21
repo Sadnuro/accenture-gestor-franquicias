@@ -18,8 +18,8 @@ public class Producto {
     @Column(name = "nombre_producto")
     private int nombreProducto;
 
-    @Column(name = "id_sucursal")
-    private int idSucursal;
+//    @Column(name = "id_sucursal")
+//    private int idSucursal;
 
     @Column(name = "fecha_creacion")
     private int fechaCreacion;

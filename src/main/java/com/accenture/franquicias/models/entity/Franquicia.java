@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,11 +21,11 @@ public class Franquicia {
     private int idFranquicia;
 
     @Column(name = "nombre_franquicia")
-    private int nombreFranquicia;
+    private String nombreFranquicia;
 
     @Column(name = "fecha_creacion")
-    private int fechaCreacion;
+    private Date fechaCreacion;
 
     @Column(name = "fecha_modificacion")
-    private int fechaModificacion;
+    private Date fechaModificacion;
 }
