@@ -14,7 +14,6 @@ public class FranquiciaServiceImpl implements IFranquiciaService {
     @Autowired
     private IFranquiciaDao franquiciaDao;
 
-
     @Override
     public Franquicia getById(Integer idFranquicia) {
         return franquiciaDao.getById(idFranquicia);

@@ -8,6 +8,8 @@ import jakarta.validation.Valid;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel="spring" )
 public interface FranquiciaMapper {
     FranquiciaMapper INSTANCE = Mappers.getMapper(FranquiciaMapper.class);
@@ -15,4 +17,5 @@ public interface FranquiciaMapper {
     Franquicia fromCreateDTO(@Valid FranquiciaCreateDto dto);
     Franquicia fromUpdateDTO(@Valid FranquiciaUpdateDto dto);
     FranquiciaGetDto toGetDTO(Franquicia franquicia);
+    List<FranquiciaGetDto> toGetDTOList(List<Franquicia> franquicias);
 }
