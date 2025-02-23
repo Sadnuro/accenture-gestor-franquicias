@@ -37,8 +37,4 @@ public class FranquiciaDaoImpl implements IFranquiciaDao {
     public Franquicia delete(Integer idFranquicia) {
         return null;
     }
-    public Franquicia updateOne(Franquicia franquicia) {
-        // Si existe lo actualiza, sino lo crea.
-        return franquiciaRepository.save(franquicia);
-    }
 }
