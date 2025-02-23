@@ -2,7 +2,9 @@ package com.accenture.franquicias.services.impl;
 
 import com.accenture.franquicias.dao.IFranquiciaDao;
 import com.accenture.franquicias.models.dto.FranquiciaCreateDto;
+import com.accenture.franquicias.models.dto.FranquiciaUpdateDto;
 import com.accenture.franquicias.models.entity.Franquicia;
+import com.accenture.franquicias.models.mapper.FranquiciaMapper;
 import com.accenture.franquicias.services.IFranquiciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +29,8 @@ public class FranquiciaServiceImpl implements IFranquiciaService {
     }
 
     @Override
-    public Franquicia update(Franquicia franquicia) {
-        return franquiciaDao.update(franquicia);
+    public Franquicia update(FranquiciaUpdateDto franquicia) {
+        return franquiciaDao.update(FranquiciaMapper.INSTANCE.fromUpdateDTO(franquicia));
     }
 
     @Override

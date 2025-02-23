@@ -3,13 +3,14 @@ package com.accenture.franquicias.models.dto;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Builder
 public class FranquiciaUpdateDto {
     @NotNull(message = "El idFranquicia es obligatorio")
-    @Positive(message = "El idFranquicia debe ser un número positivo")
+    @Positive(message = "El idFranquicia debe ser un número positivo mayor a 0")
     private Integer idFranquicia;
 
     @NotNull(message = "El nombreFranquicia es obligatorio")

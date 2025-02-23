@@ -1,5 +1,6 @@
 package com.accenture.franquicias.dao;
 
+import com.accenture.franquicias.models.dto.FranquiciaUpdateDto;
 import com.accenture.franquicias.models.entity.Franquicia;
 
 import java.util.List;
