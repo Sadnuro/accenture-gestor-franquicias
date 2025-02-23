@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -25,8 +26,8 @@ public class Franquicia {
     private String nombreFranquicia;
 
     @Column(name = "fecha_creacion")
-    private Date fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @Column(name = "fecha_modificacion")
-    private Date fechaModificacion;
+    private LocalDateTime fechaModificacion;
 }

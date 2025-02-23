@@ -4,11 +4,12 @@ import com.accenture.franquicias.models.dto.FranquiciaUpdateDto;
 import com.accenture.franquicias.models.entity.Franquicia;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IFranquiciaDao {
     List<Franquicia> getAll();
-    Franquicia getById(Integer Id);
+    Optional<Franquicia> getById(Integer Id);
     Franquicia update(Franquicia franquicia);
     Franquicia createOne(Franquicia franquicia);
-    Franquicia delete(Integer idFranquicia);
+    void delete(Integer idFranquicia);
 }

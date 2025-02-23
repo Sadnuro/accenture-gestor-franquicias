@@ -12,6 +12,6 @@ public interface IFranquiciaService {
         Franquicia getById(Integer idFranquicia);
         Franquicia update(FranquiciaUpdateDto franquicia);
         Franquicia createOne(FranquiciaCreateDto franquicia);
-        Franquicia delete(Integer idFranquicia);
+        void delete(Integer idFranquicia);
 }
 

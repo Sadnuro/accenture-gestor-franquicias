@@ -2,7 +2,6 @@ package com.accenture.franquicias.dao.impl;
 
 import com.accenture.franquicias.dao.IFranquiciaDao;
 import com.accenture.franquicias.dao.repository.IFranquiciaRepository;
-import com.accenture.franquicias.models.dto.FranquiciaUpdateDto;
 import com.accenture.franquicias.models.entity.Franquicia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,12 +14,14 @@ public class FranquiciaDaoImpl implements IFranquiciaDao {
     @Autowired
     private IFranquiciaRepository franquiciaRepository;
 
+    @Override
     public List<Franquicia> getAll() {
         return franquiciaRepository.findAll();
     }
 
-    public Franquicia getById(Integer idFranquicia) {
-        return franquiciaRepository.findById(idFranquicia).orElse(null);
+    @Override
+    public Optional<Franquicia> getById(Integer idFranquicia) {
+        return franquiciaRepository.findById(idFranquicia);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class FranquiciaDaoImpl implements IFranquiciaDao {
     }
 
     @Override
-    public Franquicia delete(Integer idFranquicia) {
-        return null;
+    public void delete(Integer idFranquicia) {
+        franquiciaRepository.deleteById(idFranquicia);
     }
 }

@@ -21,24 +21,31 @@ public class FranquiciaController {
     IFranquiciaService franquiciaService;
 
     @GetMapping
-    public List<FranquiciaGetDto> getAllFranquicias(){
-        List<Franquicia> listaEntity =  franquiciaService.getAll();
-        return FranquiciaMapper.INSTANCE.toGetDTOList(listaEntity);
+    public ResponseEntity<List<FranquiciaGetDto>> getAllFranquicias() {
+        List<Franquicia> listaEntity = franquiciaService.getAll();
+        return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTOList(listaEntity));
     }
+
     @GetMapping({"{idFranquicia}"})
-    public FranquiciaGetDto getFranquicia(@Valid @PathVariable("idFranquicia") Integer id){
-        Franquicia franquicia =  franquiciaService.getById(id);
-        System.out.println("dbresponse: "+ franquicia);
-        return FranquiciaMapper.INSTANCE.toGetDTO(franquicia);
+    public ResponseEntity<FranquiciaGetDto> getFranquicia(@Valid @PathVariable Integer idFranquicia) {
+        Franquicia franquicia = franquiciaService.getById(idFranquicia);
+        return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTO(franquicia));
     }
     @PostMapping
-    public ResponseEntity<Object>  createOne(@Valid @RequestBody FranquiciaCreateDto franquiciaCreateDto){
+    public ResponseEntity<FranquiciaGetDto> createOne(@Valid @RequestBody FranquiciaCreateDto franquiciaCreateDto) {
         Franquicia dbResponse = franquiciaService.createOne(franquiciaCreateDto);
-        return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTO(dbResponse));  //ResponseEntity.ok(response);
+        return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTO(dbResponse));
     }
+
     @PatchMapping
-    public ResponseEntity<Object> updateOne(@Valid @RequestBody FranquiciaUpdateDto franquiciaUpdateDto){
+    public ResponseEntity<FranquiciaGetDto> updateOne(@Valid @RequestBody FranquiciaUpdateDto franquiciaUpdateDto) {
         Franquicia dbResponse = franquiciaService.update(franquiciaUpdateDto);
         return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTO(dbResponse));
     }
+
+//    @DeleteMapping("/{idFranquicia}")
+//    public ResponseEntity<Void> delete(@PathVariable Integer idFranquicia) {
+//        franquiciaService.delete(idFranquicia);
+//        return ResponseEntity.noContent().build();
+//    }
 }

@@ -1,5 +1,6 @@
 package com.accenture.franquicias.services.impl;
 
+import com.accenture.franquicias.controllers.exceptions.ResourceNotFoundException;
 import com.accenture.franquicias.dao.IFranquiciaDao;
 import com.accenture.franquicias.models.dto.FranquiciaCreateDto;
 import com.accenture.franquicias.models.dto.FranquiciaUpdateDto;
@@ -9,6 +10,8 @@ import com.accenture.franquicias.services.IFranquiciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,29 +23,35 @@ public class FranquiciaServiceImpl implements IFranquiciaService {
 
     @Override
     public Franquicia getById(Integer idFranquicia) {
-        return franquiciaDao.getById(idFranquicia);
+        return franquiciaDao.getById(idFranquicia)
+                .orElseThrow(() -> new ResourceNotFoundException("Franquicia no encontrada con ID: " + idFranquicia));
     }
-
     @Override
     public List<Franquicia> getAll() {
         return franquiciaDao.getAll();
     }
 
     @Override
-    public Franquicia update(FranquiciaUpdateDto franquicia) {
-        return franquiciaDao.update(FranquiciaMapper.INSTANCE.fromUpdateDTO(franquicia));
+    public Franquicia update(FranquiciaUpdateDto franquiciaDto) {
+        Franquicia currentFranquicia = franquiciaDao.getById(franquiciaDto.getIdFranquicia())
+                .orElseThrow(() -> new ResourceNotFoundException("No se puede actualizar. Franquicia no encontrada."));
+        currentFranquicia.setFechaModificacion(LocalDateTime.now());
+        currentFranquicia.setNombreFranquicia(franquiciaDto.getNombreFranquicia());
+        return franquiciaDao.update(currentFranquicia);
     }
 
     @Override
-    public Franquicia createOne(FranquiciaCreateDto franquicia) {
+    public Franquicia createOne(FranquiciaCreateDto franquiciaDto) {
         Franquicia newFranquicia = new Franquicia();
-        newFranquicia.setNombreFranquicia(franquicia.getNombreFranquicia());
-        newFranquicia.setFechaCreacion(new Date());
-        return franquiciaDao.update(newFranquicia);
+        newFranquicia.setNombreFranquicia(franquiciaDto.getNombreFranquicia());
+        newFranquicia.setFechaCreacion(LocalDateTime.now());
+        return franquiciaDao.createOne(newFranquicia);
     }
 
     @Override
-    public Franquicia delete(Integer idFranquicia) {
-        return franquiciaDao.delete(idFranquicia);
+    public void delete(Integer idFranquicia) {
+        Franquicia franquicia = franquiciaDao.getById(idFranquicia)
+                .orElseThrow(() -> new ResourceNotFoundException("No se puede eliminar. Franquicia no encontrada."));
+        franquiciaDao.delete(idFranquicia);
     }
 }
