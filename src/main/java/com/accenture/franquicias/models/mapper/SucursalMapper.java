@@ -1,7 +1,6 @@
 package com.accenture.franquicias.models.mapper;
 
 import com.accenture.franquicias.models.dto.*;
-import com.accenture.franquicias.models.entity.Franquicia;
 import com.accenture.franquicias.models.entity.Sucursal;
 import jakarta.validation.Valid;
 import org.mapstruct.Mapper;

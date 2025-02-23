@@ -1,12 +1,8 @@
 package com.accenture.franquicias.controllers;
 
-import com.accenture.franquicias.models.dto.FranquiciaCreateDto;
-import com.accenture.franquicias.models.dto.FranquiciaGetDto;
 import com.accenture.franquicias.models.dto.SucursalCreateDto;
 import com.accenture.franquicias.models.dto.SucursalGetDto;
-import com.accenture.franquicias.models.entity.Franquicia;
 import com.accenture.franquicias.models.entity.Sucursal;
-import com.accenture.franquicias.models.mapper.FranquiciaMapper;
 import com.accenture.franquicias.models.mapper.SucursalMapper;
 import com.accenture.franquicias.services.ISucursalService;
 import jakarta.validation.Valid;
