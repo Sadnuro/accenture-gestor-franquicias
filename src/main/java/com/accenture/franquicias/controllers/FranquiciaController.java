@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/api/franquicia"})
+@RequestMapping({"/api/franquicia/", "/api/franquicia"})
 public class FranquiciaController {
     @Autowired
     IFranquiciaService franquiciaService;
 
-    @GetMapping({"/", ""})
+    @GetMapping
     public List<FranquiciaGetDto> getAllFranquicias(){
         List<Franquicia> listaEntity =  franquiciaService.getAll();
         return FranquiciaMapper.INSTANCE.toGetDTOList(listaEntity);
     }
-    @GetMapping({"/{idFranquicia}"})
+    @GetMapping({"{idFranquicia}"})
     public FranquiciaGetDto getFranquicia(@Valid @PathVariable("idFranquicia") Integer id){
         Franquicia franquicia =  franquiciaService.getById(id);
         System.out.println("dbresponse: "+ franquicia);
         return FranquiciaMapper.INSTANCE.toGetDTO(franquicia);
     }
-    @PostMapping({"/", ""})
+    @PostMapping
     public ResponseEntity<Object>  createOne(@Valid @RequestBody FranquiciaCreateDto franquiciaCreateDto){
         Franquicia dbResponse = franquiciaService.createOne(franquiciaCreateDto);
         return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTO(dbResponse));  //ResponseEntity.ok(response);
