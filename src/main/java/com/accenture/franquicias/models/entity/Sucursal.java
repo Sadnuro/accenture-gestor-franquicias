@@ -1,13 +1,15 @@
 package com.accenture.franquicias.models.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
-@Data
+import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name="sucursales")
 public class Sucursal {
@@ -15,17 +17,18 @@ public class Sucursal {
     @Column(name = "id_sucursal")
     private int idSucursal;
 
-    @Column(name = "nombre_sucursal")
-    private int nombreSucursal;
+    @Column(name = "nombre_sucursal", length = 1000) // Longitud máxima en la base de datos
+    @Size(max = 1000, message = "El nombre de la sucursal no puede tener más de 1000 caracteres") // Validación en la aplicación
+    private String nombreSucursal;
 
 //    @Column(name = "id_franquicia")
 //    private int idFranquicia;
 
     @Column(name = "fecha_creacion")
-    private int fechaCreacion;
+    private Date fechaCreacion;
 
     @Column(name = "fecha_modificacion")
-    private int fechaModificacion;
+    private Date fechaModificacion;
 
     @ManyToOne
     @JoinColumn(name="id_franquicia", referencedColumnName = "id_franquicia", foreignKey = @ForeignKey(name = "fk_franquicia"))

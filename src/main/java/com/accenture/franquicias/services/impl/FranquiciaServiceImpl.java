@@ -1,11 +1,13 @@
 package com.accenture.franquicias.services.impl;
 
 import com.accenture.franquicias.dao.IFranquiciaDao;
+import com.accenture.franquicias.models.dto.FranquiciaCreateDto;
 import com.accenture.franquicias.models.entity.Franquicia;
 import com.accenture.franquicias.services.IFranquiciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +32,11 @@ public class FranquiciaServiceImpl implements IFranquiciaService {
     }
 
     @Override
-    public Franquicia createOne(Franquicia franquicia) {
-        return franquiciaDao.update(franquicia);
+    public Franquicia createOne(FranquiciaCreateDto franquicia) {
+        Franquicia newFranquicia = new Franquicia();
+        newFranquicia.setNombreFranquicia(franquicia.getNombreFranquicia());
+        newFranquicia.setFechaCreacion(new Date());
+        return franquiciaDao.update(newFranquicia);
     }
 
     @Override
