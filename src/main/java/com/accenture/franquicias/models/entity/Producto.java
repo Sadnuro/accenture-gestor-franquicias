@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -14,6 +15,7 @@ import java.util.Date;
 @Table(name="productos")
 public class Producto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private int idProducto;
 
@@ -21,19 +23,20 @@ public class Producto {
     @Size(max = 1000, message = "El nombre del producto no puede tener más de 1000 caracteres") // Validación en la aplicación
     private String nombreProducto;
 
-    @Column(name = "sctock")
+    @Column(name = "stock")
     private int stock;
 
-//    @Column(name = "id_sucursal")
-//    private int idSucursal;
+    // Campo solo de consulta. Transaccion sobre el campo se maneja en Objeto Sucursal
+    @Column(name = "id_sucursal", insertable = false, updatable = false)
+    private int idSucursal;
 
     @Column(name = "fecha_creacion")
-    private Date fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @Column(name = "fecha_modificacion")
-    private Date fechaModificacion;
+    private LocalDateTime fechaModificacion;
 
     @ManyToOne
     @JoinColumn(name="id_sucursal", referencedColumnName = "id_sucursal", foreignKey = @ForeignKey(name = "fk_sucursal"))
-    private Sucursal sucrusal;
+    private Sucursal sucursal;
 }
