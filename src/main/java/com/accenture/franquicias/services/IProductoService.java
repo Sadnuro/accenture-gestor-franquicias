@@ -1,4 +1,15 @@
 package com.accenture.franquicias.services;
 
+import com.accenture.franquicias.models.dto.ProductoCreateDto;
+import com.accenture.franquicias.models.dto.ProductoUpdateDto;
+import com.accenture.franquicias.models.entity.Producto;
+
+import java.util.List;
+
 public interface IProductoService {
+    List<Producto> getAll();
+    Producto getById(Integer idProducto);
+    Producto update(ProductoUpdateDto productoDto);
+    Producto createOne(ProductoCreateDto productoDto);
+    void delete(Integer idProducto);
 }
