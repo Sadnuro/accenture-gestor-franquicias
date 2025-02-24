@@ -25,6 +25,11 @@ public class SucursalDaoImpl implements ISucursalDao {
     }
 
     @Override
+    public Optional<List<Sucursal>> getByIdFranquicia(Integer idFranquicia) {
+        return sucursalRepository.findByIdFranquicia(idFranquicia);
+    }
+
+    @Override
     public Sucursal update(Sucursal sucursal) {
         return sucursalRepository.save(sucursal);
     }

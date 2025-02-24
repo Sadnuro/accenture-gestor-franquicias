@@ -3,6 +3,7 @@ package com.accenture.franquicias.services.impl;
 import com.accenture.franquicias.controllers.exceptions.ResourceNotFoundException;
 import com.accenture.franquicias.dao.IProductoDao;
 import com.accenture.franquicias.models.dto.ProductoCreateDto;
+import com.accenture.franquicias.models.dto.ProductoGetForSucursalDto;
 import com.accenture.franquicias.models.dto.ProductoUpdateDto;
 import com.accenture.franquicias.models.entity.Producto;
 import com.accenture.franquicias.models.mapper.ProductoMapper;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +29,12 @@ public class ProductoServiceImpl implements IProductoService {
     public Producto getById(Integer idProducto) {
         return productoDao.getById(idProducto)
                 .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con ID: " + idProducto));
+    }
+
+    @Override
+    public List<ProductoGetForSucursalDto> getByIdSucursal(Integer idSucursal) {
+        List<Producto> productos = productoDao.getByIdSucursal(idSucursal).orElse(new ArrayList<>());
+        return ProductoMapper.INSTANCE.toGetForSucursalDTOList(productos);
     }
 
     @Override

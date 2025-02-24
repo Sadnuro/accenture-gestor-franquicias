@@ -6,6 +6,7 @@ import com.accenture.franquicias.models.entity.Sucursal;
 import com.accenture.franquicias.models.mapper.FranquiciaMapper;
 import com.accenture.franquicias.models.mapper.SucursalMapper;
 import com.accenture.franquicias.services.IFranquiciaService;
+import com.accenture.franquicias.services.IProductoService;
 import com.accenture.franquicias.services.ISucursalService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -22,6 +23,8 @@ public class SucursalController {
     ISucursalService sucursalService;
     @Autowired
     IFranquiciaService franquiciaService;
+    @Autowired
+    IProductoService productoService;
 
     @Operation(summary = "Obtener todas las sucursales", description = "Devuelve una lista con todas las sucursales registradas")
     @GetMapping
@@ -34,8 +37,9 @@ public class SucursalController {
     @GetMapping({"{idSucursal}"})
     public SucursalGetDto getFranquicia(@Valid @PathVariable("idSucursal") Integer id){
         Sucursal sucursal =  sucursalService.getById(id);
-        System.out.println("dbresponse: "+ sucursal);
-        return SucursalMapper.INSTANCE.toGetDTO(sucursal);
+        SucursalGetDto sucursalGetDto = SucursalMapper.INSTANCE.toGetDTO(sucursal);
+        sucursalGetDto.setProductos(productoService.getByIdSucursal(id));
+        return sucursalGetDto;
     }
 
     @Operation(summary = "Crear una sucursal", description = "Crea una sucursal para la franquicia asociada y con el nombre proporcionado")

@@ -32,4 +32,6 @@ public interface ProductoMapper {
     Producto fromUpdateDTO(@Valid ProductoUpdateDto dto);
     ProductoGetDto toGetDTO(Producto producto);
     List<ProductoGetDto> toGetDTOList(List<Producto> productos);
+    ProductoGetForSucursalDto toGetForSucursalDTO(Producto producto);
+    List<ProductoGetForSucursalDto> toGetForSucursalDTOList(List<Producto> productos);
 }

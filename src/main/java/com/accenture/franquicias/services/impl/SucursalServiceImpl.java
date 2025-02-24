@@ -3,6 +3,8 @@ package com.accenture.franquicias.services.impl;
 import com.accenture.franquicias.controllers.exceptions.ResourceNotFoundException;
 import com.accenture.franquicias.dao.ISucursalDao;
 import com.accenture.franquicias.models.dto.SucursalCreateDto;
+import com.accenture.franquicias.models.dto.SucursalGetDto;
+import com.accenture.franquicias.models.dto.SucursalGetForFranquiciaDto;
 import com.accenture.franquicias.models.dto.SucursalUpdateDto;
 import com.accenture.franquicias.models.entity.Sucursal;
 import com.accenture.franquicias.models.mapper.SucursalMapper;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,6 +30,12 @@ public class SucursalServiceImpl implements ISucursalService {
     public Sucursal getById(Integer idSucursal) {
         return sucursalDao.getById(idSucursal)
                 .orElseThrow(() -> new ResourceNotFoundException("Sucursal no encontrada con ID: " + idSucursal));
+    }
+
+    @Override
+    public List<SucursalGetForFranquiciaDto> getByIdFranquicia(Integer idFranquicia) {
+        List<Sucursal> sucursales = sucursalDao.getByIdFranquicia(idFranquicia).orElse(new ArrayList<>());
+        return SucursalMapper.INSTANCE.toGetForFranquiciaDTOList(sucursales);
     }
 
     @Override
