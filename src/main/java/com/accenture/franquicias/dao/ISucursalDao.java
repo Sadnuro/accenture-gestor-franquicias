@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface ISucursalDao {
     List<Sucursal> getAll();
     Optional<Sucursal> getById(Integer Id);
+    Optional<List<Sucursal>> getByIdFranquicia(Integer idFranquicia);
     Sucursal update(Sucursal sucursal);
     Sucursal createOne(Sucursal sucursal);
     void delete(Integer idSucursal);

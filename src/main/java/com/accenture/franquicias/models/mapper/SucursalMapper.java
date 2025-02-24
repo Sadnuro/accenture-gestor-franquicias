@@ -32,4 +32,6 @@ public interface SucursalMapper {
     Sucursal fromUpdateDTO(@Valid SucursalUpdateDto dto);
     SucursalGetDto toGetDTO(Sucursal sucursal);
     List<SucursalGetDto> toGetDTOList(List<Sucursal> sucursal);
+    SucursalGetForFranquiciaDto toGetForFranquiciaDTO(Sucursal sucursal);
+    List<SucursalGetForFranquiciaDto> toGetForFranquiciaDTOList(List<Sucursal> sucursal);
 }

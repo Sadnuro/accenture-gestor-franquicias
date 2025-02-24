@@ -3,9 +3,12 @@ package com.accenture.franquicias.controllers;
 import com.accenture.franquicias.models.dto.FranquiciaCreateDto;
 import com.accenture.franquicias.models.dto.FranquiciaGetDto;
 import com.accenture.franquicias.models.dto.FranquiciaUpdateDto;
+import com.accenture.franquicias.models.dto.SucursalGetForFranquiciaDto;
 import com.accenture.franquicias.models.entity.Franquicia;
+import com.accenture.franquicias.models.entity.Sucursal;
 import com.accenture.franquicias.models.mapper.FranquiciaMapper;
 import com.accenture.franquicias.services.IFranquiciaService;
+import com.accenture.franquicias.services.ISucursalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
@@ -20,6 +23,8 @@ import java.util.List;
 public class FranquiciaController {
     @Autowired
     IFranquiciaService franquiciaService;
+    @Autowired
+    ISucursalService sucursalService;
 
     @Operation(summary = "Obtener todas las franquicias", description = "Devuelve una lista con todas las franquicias registradas")
     @GetMapping
@@ -28,13 +33,16 @@ public class FranquiciaController {
         return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTOList(listaEntity));
     }
 
-    @Operation(summary = "Buscar franquicia por ID", description = "Devuelve una franquicia según su ID")
+    @Operation(summary = "Buscar franquicia por ID", description = "Devuelve una franquicia según su ID, con su lista de sucursales")
     @GetMapping({"{idFranquicia}"})
     public ResponseEntity<FranquiciaGetDto> getFranquicia(  @Valid
                                                             @Parameter(description = "ID de la franquicia", required = true)
                                                             @PathVariable Integer idFranquicia) {
         Franquicia franquicia = franquiciaService.getById(idFranquicia);
-        return ResponseEntity.ok(FranquiciaMapper.INSTANCE.toGetDTO(franquicia));
+        List<SucursalGetForFranquiciaDto> sucursales = sucursalService.getByIdFranquicia(idFranquicia);
+        FranquiciaGetDto franquiciaGetDto = FranquiciaMapper.INSTANCE.toGetDTO(franquicia);
+        franquiciaGetDto.setSucursales(sucursales);
+        return ResponseEntity.ok(franquiciaGetDto);
     }
 
     @Operation(summary = "Crear una franquicia", description = "Crea una franquicia con el nombre proporcionado y genera un id automaticamente")
