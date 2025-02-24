@@ -2,8 +2,10 @@ package com.accenture.franquicias.controllers;
 
 import com.accenture.franquicias.models.dto.SucursalCreateDto;
 import com.accenture.franquicias.models.dto.SucursalGetDto;
+import com.accenture.franquicias.models.entity.Franquicia;
 import com.accenture.franquicias.models.entity.Sucursal;
 import com.accenture.franquicias.models.mapper.SucursalMapper;
+import com.accenture.franquicias.services.IFranquiciaService;
 import com.accenture.franquicias.services.ISucursalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.List;
 public class SucursalController {
     @Autowired
     ISucursalService sucursalService;
+    @Autowired
+    IFranquiciaService franquiciaService;
 
     @GetMapping
     public List<SucursalGetDto> getAllSucursales(){
@@ -31,7 +35,10 @@ public class SucursalController {
     }
     @PostMapping
     public ResponseEntity<Object> createOne(@Valid @RequestBody SucursalCreateDto sucursalDto){
+        // Verifica existencia de Franquicia. Si no existe devuelve NotFoundException
+        Franquicia franquicia = franquiciaService.getById(sucursalDto.getIdFranquicia());
+        System.out.println("Existe franquicia:" + franquicia.toString());
         Sucursal dbResponse = sucursalService.createOne(sucursalDto);
-        return ResponseEntity.ok(SucursalMapper.INSTANCE.toGetDTO(dbResponse));  //ResponseEntity.ok(response);
+        return ResponseEntity.ok(SucursalMapper.INSTANCE.toGetDTO(dbResponse));
     }
 }

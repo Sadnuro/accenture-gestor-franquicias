@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +16,7 @@ import java.util.Date;
 @Table(name="sucursales")
 public class Sucursal {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_sucursal")
     private int idSucursal;
 
@@ -25,14 +26,15 @@ public class Sucursal {
     @Column(name = "nombre_sucursal", length = 1000) // Longitud máxima en la base de datos
     private String nombreSucursal;
 
-//    @Column(name = "id_franquicia")
-//    private int idFranquicia;
+    // Campo solo de consulta. Transaccion sobre el campo se maneja en Objeto Franquicia
+    @Column(name = "id_franquicia", insertable = false, updatable = false)
+    private int idFranquicia;
 
     @Column(name = "fecha_creacion")
-    private Date fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @Column(name = "fecha_modificacion")
-    private Date fechaModificacion;
+    private LocalDateTime fechaModificacion;
 
     @ManyToOne
     @JoinColumn(name="id_franquicia", referencedColumnName = "id_franquicia", foreignKey = @ForeignKey(name = "fk_franquicia"))
