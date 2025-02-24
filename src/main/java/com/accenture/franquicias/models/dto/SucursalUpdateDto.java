@@ -16,12 +16,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class SucursalUpdateDto {
-    @NotNull(message = "El nombreFranquicia es obligatorio")
-    @Positive(message = "El idFranquicia debe ser un número positivo mayor a 0")
+    @NotNull(message = "El idSucursal es obligatorio")
+    @Positive(message = "El idSucursal debe ser un número positivo mayor a 0")
     private int idSucursal;
 
-    @NotNull(message = "El nombreFranquicia es obligatorio")
-    @NotBlank(message = "El nombreFranquicia no puede estar vacío")
-    @Size(max=1000, message ="El nombreFranquicia no puede superar los 1000 caracteres")
+    @NotNull(message = "El nombreSucursal es obligatorio")
+    @NotBlank(message = "El nombreSucursal no puede estar vacío")
+    @Size(max=1000, message ="El nombreSucursal no puede superar los 1000 caracteres")
     private String nombreSucursal;
 }

@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class SucursalCreateDto {
-    @NotNull(message = "El nombreFranquicia es obligatorio")
-    @NotBlank(message = "El nombreFranquicia no puede estar vacío")
-    @Size(max=1000, message ="El nombreFranquicia no puede superar los 1000 caracteres")
+    @NotNull(message = "El nombreSucursal es obligatorio")
+    @NotBlank(message = "El nombreSucursal no puede estar vacío")
+    @Size(max=1000, message ="El nombreSucursal no puede superar los 1000 caracteres")
     private String nombreSucursal;
 
     @NotNull(message = "El idFranquicia es obligatorio")
