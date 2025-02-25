@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping({"/api/producto", "/api/producto/"})
@@ -36,6 +37,12 @@ public class ProductoController {
     public ProductoGetDto getProducto(@Valid @PathVariable("idProducto") Integer id){
         Producto producto =  productoService.getById(id);
         return ProductoMapper.INSTANCE.toGetDTO(producto);
+    }
+
+    @Operation(summary = "Buscar producto con mayor stock de cada sucursal de por id de franquicia", description = "la lista de productos con mayor stock de cada sucursal de una franquicia")
+    @GetMapping({"/max-stock-franquicia/{idFranquicia}"})
+    public List<ProductoFranquiciaSucursalGetDto> obtenerProductosMaxStock(@Valid @PathVariable("idFranquicia") Integer id){
+        return productoService.obtenerProductosMaxStock(id);
     }
 
     @Operation(summary = "Crear un producto", description = "Crea un producto para la sucursal asociada y con el nombre y stock proporcionado (por defecto 0)")

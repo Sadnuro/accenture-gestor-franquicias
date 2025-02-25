@@ -2,6 +2,7 @@ package com.accenture.franquicias.dao.impl;
 
 import com.accenture.franquicias.dao.IProductoDao;
 import com.accenture.franquicias.dao.repository.IProductoRepository;
+import com.accenture.franquicias.models.dto.ProductoFranquiciaSucursalGetDto;
 import com.accenture.franquicias.models.dto.ProductoGetForSucursalDto;
 import com.accenture.franquicias.models.entity.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class ProductoDaoImpl implements IProductoDao {
     @Override
     public Optional<Producto> getById(Integer idProducto) {
         return productoRepository.findById(idProducto);
+    }
+
+    @Override
+    public Optional<List<ProductoFranquiciaSucursalGetDto>> obtenerProductosMaxStock(Integer idFranquicia) {
+        return Optional.ofNullable(productoRepository.findMaxStockProductsByFranquicia(idFranquicia));
     }
 
     @Override

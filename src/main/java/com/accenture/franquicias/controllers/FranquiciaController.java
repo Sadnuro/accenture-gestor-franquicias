@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/api/franquicia/", "/api/franquicia"})
+@RequestMapping({"/api/franquicia/"})
 public class FranquiciaController {
     @Autowired
     IFranquiciaService franquiciaService;

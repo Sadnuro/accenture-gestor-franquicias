@@ -3,6 +3,7 @@ package com.accenture.franquicias.services.impl;
 import com.accenture.franquicias.controllers.exceptions.ResourceNotFoundException;
 import com.accenture.franquicias.dao.IProductoDao;
 import com.accenture.franquicias.models.dto.ProductoCreateDto;
+import com.accenture.franquicias.models.dto.ProductoFranquiciaSucursalGetDto;
 import com.accenture.franquicias.models.dto.ProductoGetForSucursalDto;
 import com.accenture.franquicias.models.dto.ProductoUpdateDto;
 import com.accenture.franquicias.models.entity.Producto;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoServiceImpl implements IProductoService {
@@ -35,6 +37,11 @@ public class ProductoServiceImpl implements IProductoService {
     public List<ProductoGetForSucursalDto> getByIdSucursal(Integer idSucursal) {
         List<Producto> productos = productoDao.getByIdSucursal(idSucursal).orElse(new ArrayList<>());
         return ProductoMapper.INSTANCE.toGetForSucursalDTOList(productos);
+    }
+
+    @Override
+    public List<ProductoFranquiciaSucursalGetDto> obtenerProductosMaxStock(Integer idFranquicia) {
+        return productoDao.obtenerProductosMaxStock(idFranquicia).orElse(new ArrayList<>());
     }
 
     @Override
