@@ -1,5 +1,5 @@
 # accenture-gestor-franquicias
-API to manage franchises, branches and products
+API to manage franchises, subsidiary and products
 
 # Start up 🚀
 These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
