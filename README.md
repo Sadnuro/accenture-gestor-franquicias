@@ -34,7 +34,7 @@ To start the server you only need to click button run on the screen:
 ![image](https://github.com/user-attachments/assets/54d0fae5-4dad-4d41-a281-fd0d64688c2a)
 
 At the root of the project, you can find the file `api-docs.json` with the information about how works the endpoints.
-[API Docs](https://app.swaggerhub.com/apis/sadithnunez/Gestor-Franquicias/1.0.0-oas3.1)
+[API Docs](https://app.swaggerhub.com/apis-docs/sadithnunez/Gestor-Franquicias/1.0.0-oas3.1)
 
 Additionally, the Postman collection is shared so that each endpoint of the API can be tested. [Postman API Collection for testing](https://app.getpostman.com/join-team?invite_code=11d538e579485bb7cd012457cdced7b21ccf1b2cc8af6fd1dc3f116f124d9be2&target_code=4faeced62f93789a3f28521430d874de)
 
