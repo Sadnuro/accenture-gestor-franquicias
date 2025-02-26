@@ -7,7 +7,7 @@ These instructions will allow you to get a copy of the project running on your l
 ## Requirements  📋
 In the first place,  you must have Java Version 17, Gradle 7.6.1, and MySQL 8.0.29 on your computer. 
 Also you must need some editor code. I recommend you Intellij IDEA Community.
-With Java Version 17 and your editor code in your computer the next step its import the database schema in your MySQL workbench. if you don't have MySQL workbench look at this [link](https://dev.mysql.com/downloads/file/?id=506568).
+With Java Version 17 and your editor code in your computer the next step its import the database schema in your MySQL workbench. The importation file is located in te folder `db/franquiciasdb-dump.sql` in this repository; if you don't have MySQL workbench look at this [link](https://dev.mysql.com/downloads/file/?id=506568).
 
 ### import the database schema 
 For importing the database schema on your MySQL, you only open your workbench and follow these steps:
