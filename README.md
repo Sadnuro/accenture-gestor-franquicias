@@ -1,12 +1,5 @@
 # accenture-gestor-franquicias
-API para gestionar franquicias, sucursales y productos.
-
-
-## Requirements  📋
-Para configurar el proeycto se requiere tener instalado:
-Java Version 17
-
-
+API to manage franchises, branches and products
 
 # Start up 🚀
 These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
