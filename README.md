@@ -1,6 +1,8 @@
 # accenture-gestor-franquicias
 API to manage franchises, subsidiary and products
 
+
+
 # Start up 🚀
 These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
 
@@ -9,7 +11,12 @@ In the first place,  you must have Java Version 17, Gradle 7.6.1, and MySQL 8.0.
 Also you must need some editor code. I recommend you Intellij IDEA Community.
 With Java Version 17 and your editor code in your computer the next step its import the database schema in your MySQL workbench. The importation file is located in te folder `db/franquiciasdb-dump.sql` in this repository; if you don't have MySQL workbench look at this [link](https://dev.mysql.com/downloads/file/?id=506568).
 
+### Database Entity Relationship diagram
+![Gestor-franquicia-ER](https://github.com/user-attachments/assets/666ed190-3d26-4e35-8c9b-813210e6dbd2)
+
+
 ### import the database schema 
+
 For importing the database schema on your MySQL, you only open your workbench and follow these steps:
 
  1. Open your MySQL workbench. 
